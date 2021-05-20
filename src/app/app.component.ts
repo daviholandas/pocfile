@@ -15,7 +15,7 @@ export class AppComponent {
   vi ="https://docs.google.com/gview?url=%URL%&embedded=true";
 
   constructor(private fileService: FileStoreService, private modalService: NgbModal){}
-  
+
   saveFile(event:any){
     let file = event.target.files[0];
     this.fileService.save({name: 'dass', file: file})
@@ -24,8 +24,11 @@ export class AppComponent {
 
   open(content: any) {
     this.modalService.open(content);
-    this.fileService.getFile(4)
-    .then(f => this.src = "https://localhost:5001/WeatherForecast");
+    this.fileService.getFile(5)
+    .then(f =>{
+     this.transform(f?.file).then(x => this.src = x)
+
+    } );
   }
 
   private getDismissReason(reason: any): string {

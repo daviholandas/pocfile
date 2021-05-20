@@ -8,6 +8,8 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { DocumentViewerModule } from '@txtextcontrol/tx-ng-document-viewer';
 import "file-viewer";
 import { SafePipe } from './safe.pipe';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SafePipe } from './safe.pipe';
     AppRoutingModule,
     NgbModule,
     NgxDocViewerModule,
-    DocumentViewerModule
+    DocumentViewerModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

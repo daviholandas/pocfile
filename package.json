@@ -27,6 +27,7 @@
     "file-viewer": "^1.2.0",
     "mammoth": "^1.4.16",
     "ngx-doc-viewer": "^2.0.2",
+    "ngx-extended-pdf-viewer": "^9.0.0-alpha.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
