@@ -22,10 +22,26 @@ export class FileStoreService extends Dexie {
     getFile(id: number){
         return this.file.get(id);
     }
-    
+
+    deleteAll(){
+      return this.file.clear();
+    }
+
+    getFiles(){
+      return this.file.toArray();
+    }
+
 }
 
 export interface FileSave{
     name: string;
     file: File;
+    type: Type
+}
+
+export enum Type{
+  Pdf,
+  Excel,
+  Doc,
+  IMG
 }

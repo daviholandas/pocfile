@@ -2,6 +2,17 @@
   <p>UpLoad file</p>
   <input type="file" (change)="saveFile($event)">
 </div>
+<div class="container px-4">
+  <div *ngFor="let file of files" class="row gx-5" >
+    <div class="col">
+      <div class="p-3 border bg-light">
+        <button (click)="open(content, file)" type="button" class="btn btn-success">{{file?.name}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="delete()" type="button" class="btn btn-danger">Delete all files</button>
 
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -11,13 +22,13 @@
     </button>
   </div>
   <div>
-    <ngx-extended-pdf-viewer [src]="src"  height="80vh"></ngx-extended-pdf-viewer>
+    <ngx-extended-pdf-viewer [src]="file" height="80vh"></ngx-extended-pdf-viewer>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+<!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
 
 <hr>
