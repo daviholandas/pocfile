@@ -38,9 +38,16 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/mammoth/mammoth.browser.min.js",
+              "node_modules/ng2-image-viewer/imageviewer.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/pdfjs-dist/build/pdf.min.js"
+              }, {
+                "input": "node_modules/pdfjs-dist/build/pdf.worker.min.js"
+              }
+            ]
           },
           "configurations": {
             "production": {

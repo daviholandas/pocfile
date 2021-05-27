@@ -9,7 +9,7 @@ import { DocumentViewerModule } from '@txtextcontrol/tx-ng-document-viewer';
 import "file-viewer";
 import { SafePipe } from './safe.pipe';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-
+import { ImageViewerModule } from '@hallysonh/ngx-imageviewer';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     NgbModule,
     NgxDocViewerModule,
     DocumentViewerModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    ImageViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

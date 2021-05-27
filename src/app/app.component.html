@@ -21,8 +21,9 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div>
-    <ngx-extended-pdf-viewer [src]="file" height="80vh"></ngx-extended-pdf-viewer>
+  <div class="modal-body">
+    <!-- <ngx-extended-pdf-viewer [src]="file" height="80vh"></ngx-extended-pdf-viewer> -->
+    <ngx-imageviewer [src]="file"></ngx-imageviewer>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
