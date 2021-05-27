@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileSave, FileStoreService } from './fileStore.service';
 import { IMAGEVIEWER_CONFIG, ImageViewerConfig } from '@hallysonh/ngx-imageviewer';
@@ -49,15 +49,19 @@ const MY_IMAGEVIEWER_CONFIG: ImageViewerConfig = {
     }
   ]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
   title = 'pocfile';
   file:any;
   closeResult = '';
   src:any = '';
   vi ="https://docs.google.com/gview?url=%URL%&embedded=true";
   files: (FileSave | undefined)[] = [];
+  fileType ='';
 
   constructor(private fileService: FileStoreService, private modalService: NgbModal){}
+  ngOnDestroy(): void {
+    this.fileService.deleteAll();
+  }
   ngOnInit(): void {
     this.getAllFiles();
   }
@@ -82,32 +86,35 @@ export class AppComponent implements OnInit{
   open(content: any, file?: FileSave) {
     let type: string[] = [];
     type = file?.name.split('.');
-    switch (type[1]) {
-      case 'png':
-        this.transform(file.file).then(r => this.file = r);
+    this.fileType = type[1];
+    switch (this.fileType) {
+      case 'jpeg':
+        this.transform(file.file).then(r =>{
+          this.file = r
+          console.log(r)
+        } );
         break;
 
       case 'pdf':
-        this.transform(file.file).then(r => this.file = r);
+        this.transform(file.file).then(r =>{
+          this.file = r
+          console.log(r)
+        } );
         break;
 
       case 'xlsx':
-        this.downloadFile(file.file);
+        this.file = file.file;
+        break;
+
+      case 'docx':
+        this.file = file.file;
         break;
     }
     console.log(type[1]);
     this.modalService.open(content, {size:'xl' });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
+
 
   private transform(file: any){
     return new Promise((resolve, reject) => {
@@ -118,8 +125,8 @@ export class AppComponent implements OnInit{
     });
   }
 
-  downloadFile(file){
-    let url = window.URL.createObjectURL(file);
+  downloadFile(){
+    let url = window.URL.createObjectURL(this.file);
     window.open(url);
   }
 }

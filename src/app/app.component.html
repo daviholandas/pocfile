@@ -22,8 +22,19 @@
     </button>
   </div>
   <div class="modal-body">
-    <!-- <ngx-extended-pdf-viewer [src]="file" height="80vh"></ngx-extended-pdf-viewer> -->
-    <ngx-imageviewer [src]="file"></ngx-imageviewer>
+    <div [ngSwitch]="fileType">
+      <div *ngSwitchCase="'pdf'">
+        <!-- <ngx-imageviewer [src]="file"></ngx-imageviewer>
+        <ngx-extended-pdf-viewer [src]="file" height="80vh"></ngx-extended-pdf-viewer> -->
+      </div>
+      <div *ngSwitchCase="'jpeg'">
+        <ngx-imageviewer [src]="file"></ngx-imageviewer>
+        <img [src]="file" alt="">
+      </div>
+      <div *ngSwitchDefault>
+        <button type="button" class="btn btn-info" (click)="downloadFile()">Download File</button>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
